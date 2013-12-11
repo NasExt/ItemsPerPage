@@ -1,0 +1,25 @@
+/**
+ * ItemsPerPage
+ * @copyright Copyright (c) 2013 Dusan Hudak
+ */
+
+.itemsPerPage {
+	margin: 0;
+}
+
+.itemsPerPage label {
+	margin: 0;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.itemsPerPage select {
+	margin: 0;
+	display: inline-block;
+	width: 60px;
+}
+
+.itemsPerPage input {
+	margin: 0;
+	display: inline-block;
+}
