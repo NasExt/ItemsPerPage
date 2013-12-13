@@ -81,7 +81,7 @@ FooPresenter extends Presenter{
 		/** @var VisualPaginator $vp */
 		$vp = $this['vp'];
 		$paginator = $vp->getPaginator();
-		$paginator->itemsPerPage = $itemsPerPage->getIpp();
+		$paginator->itemsPerPage = $itemsPerPage->getValue();
 		...
 	}
 
@@ -97,7 +97,7 @@ FooPresenter extends Presenter{
 
 }
 ```
-It is very important in obtaining Ipp values ​​used getIp () method, because only this ensures get valid data.
+It is very important in obtaining value ​​used getValue() method, because only this ensures get valid data.
 
 
 ###ItemsPerPage with ajax
@@ -114,7 +114,7 @@ For use ItemsPerPage with ajax use setAjaxRequest() and event onChange[] for inv
 		$control->setAjaxRequest(TRUE);
 
 		$that = $this;
-		$control->onChange[] = function ($component, $ipp) use ($that) {
+		$control->onChange[] = function ($component, $value) use ($that) {
 			if($that->isAjax()){
 				$that->invalidateControl();
 			}

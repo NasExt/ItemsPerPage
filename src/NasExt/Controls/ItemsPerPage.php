@@ -25,7 +25,7 @@ class ItemsPerPage extends Control
 	const MASK_PREFIX = 'ipp-';
 
 	/** @persistent */
-	public $ipp;
+	public $value;
 
 	/** @var  bool */
 	public $ajaxRequest;
@@ -154,15 +154,15 @@ class ItemsPerPage extends Control
 	/**
 	 * @return int
 	 */
-	public function getIpp()
+	public function getValue()
 	{
-		if (in_array($this->ipp, $this->getPerPageData())) {
-			return $this->ipp;
+		if (in_array($this->value, $this->getPerPageData())) {
+			return $this->value;
 		}
 
-		$ipp = (int)$this->httpRequest->getCookie($this->cookieMask);
-		if (in_array($ipp, $this->getPerPageData())) {
-			return $ipp;
+		$value = (int)$this->httpRequest->getCookie($this->cookieMask);
+		if (in_array($value, $this->getPerPageData())) {
+			return $value;
 		} else {
 			return $this->defaultValue;
 		}
@@ -181,7 +181,7 @@ class ItemsPerPage extends Control
 		!$this->ajaxRequest ? : $elementPrototype->class[] = 'ajax';
 
 		$form->addSelect('itemsPerPage', $this->inputLabel, $this->getPerPageData())
-			->setDefaultValue($this->getIpp());
+			->setDefaultValue($this->getValue());
 
 		if ($this->useSubmit) {
 			$form->addSubmit('change', $this->submitLabel);
@@ -204,14 +204,14 @@ class ItemsPerPage extends Control
 		$values = $form->getValues();
 
 		if ($values->itemsPerPage) {
-			$ipp = $values->itemsPerPage;
+			$value = $values->itemsPerPage;
 		} else {
-			$ipp = $this->defaultValue;
+			$value = $this->defaultValue;
 		}
-		$this->ipp = $ipp;
+		$this->value= $value;
 
-		$this->httpResponse->setCookie($this->cookieMask, $ipp, 0);
-		$this->onChange($this, $this->getIpp());
+		$this->httpResponse->setCookie($this->cookieMask, $value, 0);
+		$this->onChange($this, $this->getValue());
 
 		if (!$this->presenter->isAjax()) {
 			$this->presenter->redirect('this');
