@@ -8,7 +8,7 @@ Requirements
 
 NasExt/ItemsPerPage requires PHP 5.3.2 or higher.
 
-- [Nette Framework 2.0.x](https://github.com/nette/nette)
+- [Nette Framework](https://github.com/nette/nette)
 
 Installation
 ------------
@@ -16,7 +16,7 @@ Installation
 The best way to install NasExt/ItemsPerPage is using  [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require nasext/items-per-page:@dev
+$ composer require nasext/items-per-page
 ```
 
 Enable the extension using your neon config.
