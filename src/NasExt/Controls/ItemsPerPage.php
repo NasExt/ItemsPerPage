@@ -68,6 +68,12 @@ class ItemsPerPage extends Control
 	public function __construct(Request $httpRequest, Response $httpResponse)
 	{
 		parent::__construct();
+
+		$reflection = $this->getReflection();
+		$dir = dirname($reflection->getFileName());
+		$name = $reflection->getShortName();
+		$this->templateFile = $dir . DIRECTORY_SEPARATOR . $name . '.latte';
+
 		$this->httpRequest = $httpRequest;
 		$this->httpResponse = $httpResponse;
 	}
@@ -95,17 +101,6 @@ class ItemsPerPage extends Control
 	public function setAjaxRequest($value = TRUE)
 	{
 		$this->ajaxRequest = $value;
-		return $this;
-	}
-
-
-	/**
-	 * @param string $file
-	 * @return ItemsPerPage provides fluent interface
-	 */
-	public function setTemplateFile($file)
-	{
-		$this->templateFile = $file;
 		return $this;
 	}
 
@@ -208,7 +203,7 @@ class ItemsPerPage extends Control
 		} else {
 			$value = $this->defaultValue;
 		}
-		$this->value= $value;
+		$this->value = $value;
 
 		$this->httpResponse->setCookie($this->cookieMask, $value, 0);
 		$this->onChange($this, $this->getValue());
@@ -224,14 +219,20 @@ class ItemsPerPage extends Control
 	 */
 	public function getTemplateFile()
 	{
-		if ($this->templateFile) {
-			return $this->templateFile;
-		}
+		return $this->templateFile;
+	}
 
-		$reflection = $this->getReflection();
-		$dir = dirname($reflection->getFileName());
-		$name = $reflection->getShortName();
-		return $dir . DIRECTORY_SEPARATOR . $name . '.latte';
+
+	/**
+	 * @param string $file
+	 * @return ItemsPerPage provides fluent interface
+	 */
+	public function setTemplateFile($file)
+	{
+		if ($file) {
+			$this->templateFile = $file;
+		}
+		return $this;
 	}
 
 
