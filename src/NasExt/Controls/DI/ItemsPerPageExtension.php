@@ -15,16 +15,6 @@ use Nette\Configurator;
 use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
 
-if (!class_exists('Nette\DI\CompilerExtension')) {
-	class_alias('Nette\Config\CompilerExtension', 'Nette\DI\CompilerExtension');
-	class_alias('Nette\Config\Compiler', 'Nette\DI\Compiler');
-}
-
-if (isset(\Nette\Loaders\NetteLoader::getInstance()->renamed['Nette\Configurator']) || !class_exists('Nette\Configurator')) {
-	unset(\Nette\Loaders\NetteLoader::getInstance()->renamed['Nette\Configurator']);
-	class_alias('Nette\Config\Configurator', 'Nette\Configurator');
-}
-
 /**
  * ItemsPerPageExtension
  *
