@@ -184,7 +184,7 @@ class ItemsPerPage extends Control
 			$form['itemsPerPage']->setAttribute('data-items-per-page');
 		}
 
-		$form->onSuccess[] = callback($this, 'processSubmit');
+		$form->onSuccess[] = array($this, 'processSubmit');
 
 		return $form;
 	}
