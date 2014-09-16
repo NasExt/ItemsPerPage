@@ -11,7 +11,6 @@
 
 namespace NasExt\Controls\DI;
 
-use Nette\Configurator;
 use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
 
@@ -50,16 +49,5 @@ class ItemsPerPageExtension extends CompilerExtension
 			->addSetup('$inputLabel', array($config['inputLabel']))
 			->addSetup('$submitLabel', array($config['submitLabel']))
 			->addSetup('setDefaultValue', array($config['defaultValue']));
-	}
-
-
-	/**
-	 * @param Configurator $configurator
-	 */
-	public static function register(Configurator $configurator)
-	{
-		$configurator->onCompile[] = function (Configurator $config, Compiler $compiler) {
-			$compiler->addExtension('itemsPerPage', new ItemsPerPageExtension());
-		};
 	}
 }
