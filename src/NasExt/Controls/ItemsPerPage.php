@@ -206,10 +206,6 @@ class ItemsPerPage extends Control
 
 		$this->httpResponse->setCookie($this->cookieMask, $value, 0);
 		$this->onChange($this, $this->getValue());
-
-		if (!$this->presenter->isAjax()) {
-			$this->presenter->redirect('this');
-		}
 	}
 
 
