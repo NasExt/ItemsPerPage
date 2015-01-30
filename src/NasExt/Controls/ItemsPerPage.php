@@ -175,8 +175,7 @@ class ItemsPerPage extends Control
 		$elementPrototype->class[] = lcfirst($this->reflection->getShortName());
 		!$this->ajaxRequest ? : $elementPrototype->class[] = 'ajax';
 
-		$form->addSelect('itemsPerPage', $this->inputLabel, $this->getPerPageData())
-			->setDefaultValue($this->getValue());
+		$form->addSelect('itemsPerPage', $this->inputLabel, $this->getPerPageData());
 
 		if ($this->useSubmit) {
 			$form->addSubmit('change', $this->submitLabel);
@@ -246,5 +245,11 @@ class ItemsPerPage extends Control
 		$template->setFile($this->getTemplateFile());
 		$template->render();
 	}
-}
 
+	public function loadState(array $parameters)
+	{
+		parent::loadState($parameters);
+		$this->getComponent('form-itemsPerPage')->setDefaultValue($this->getValue());
+	}
+
+}
