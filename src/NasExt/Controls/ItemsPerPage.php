@@ -206,6 +206,10 @@ class ItemsPerPage extends Control
 
 		$this->httpResponse->setCookie($this->cookieMask, $value, 0);
 		$this->onChange($this, $this->getValue());
+
+		if (!$this->presenter->isAjax()) {
+			$this->presenter->redirect('this');
+		}
 	}
 
 
@@ -242,10 +246,10 @@ class ItemsPerPage extends Control
 		$template->render();
 	}
 
+
 	public function loadState(array $parameters)
 	{
 		parent::loadState($parameters);
 		$this->getComponent('form-itemsPerPage')->setDefaultValue($this->getValue());
 	}
-
 }
