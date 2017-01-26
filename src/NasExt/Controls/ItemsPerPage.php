@@ -172,7 +172,7 @@ class ItemsPerPage extends Control
 		$form = new Form();
 		$elementPrototype = $form->getElementPrototype();
 
-		$elementPrototype->class[] = lcfirst($this->reflection->getShortName());
+		$elementPrototype->class[] = lcfirst(self::getReflection()->getShortName());
 		!$this->ajaxRequest ? : $elementPrototype->class[] = 'ajax';
 
 		$form->addSelect('itemsPerPage', $this->inputLabel, $this->getPerPageData());
